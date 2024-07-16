@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Cloud - Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Personal Cloud</h2>
+                <button class="toggle-sidebar" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+            </div>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <ul>
+                    <li><a href=""><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                    <li><a href="/home/{{ id }}"><i class="fas fa-folder"></i> <span class="nav-text">My Files</span></a></li>
+                    <li><a href="#"><i class="fas fa-share-alt"></i> <span class="nav-text">Shared</span></a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> <span class="nav-text">Settings</span></a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span class="nav-text">Logout</span></a></li>
+                </ul>
+                <div class="storage-info">
+                    <div class="storage-label">
+                        <span>Storage</span>
+                    </div>
+                    <div class="storage-bar">
+                        <div class="storage-used" id="storageUsed"></div>
+                    </div>
+                    <div class="storage-pie hidden" id="storagePie"></div>
+                    <span id="storageInfoText"></span>
+                </div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="header-search">
+                    <input type="text" placeholder="Search files...">
+                </div>
+                <div class="header-user">
+                    <img src="{{ url_for('static', filename='images/user.png') }}" alt="User Avatar">
+                    <span>Welcome, {{username}}</span>
+                </div>
+            </header>
+            <div class="content">
+                <nav class="breadcrumb">
+                    <button id="backButton"><i class="fas fa-arrow-left"></i> Back</button>
+                    <span id="breadcrumbPath"></span>
+                </nav>
+                <div class="file-grid" id="fileGrid">
+                    <!-- File and folder items will be added here dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script>
+        const user_id = "{{ id }}";
+    </script>
+</body>
+</html>
+
